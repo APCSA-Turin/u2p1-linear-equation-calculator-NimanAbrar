@@ -16,17 +16,17 @@ public class LinearCalculator{
     public LinearCalculator(String firstCoordinate, String secondCoordinate){ // <--add 2 string parameters to this constructor
         int firstComma = firstCoordinate.indexOf(",");
         int secondComma = secondCoordinate.indexOf(",");
-        this.x1 = Integer.parseInt(firstCoordinate.substring(1,firstComma));
+        this.x1 = Integer.parseInt(firstCoordinate.substring(1,firstComma)); //i indicate where to stop to produce the corrext x or y values whether it is negative or positive
         this.x2 = Integer.parseInt(secondCoordinate.substring(1,secondComma));
         this.y1 = Integer.parseInt(firstCoordinate.substring(firstComma + 1,firstCoordinate.length() - 1));
-        this.y2 = Integer.parseInt(secondCoordinate.substring(secondComma + 1,secondCoordinate.length() - 1));
+        this.y2 = Integer.parseInt(secondCoordinate.substring(secondComma + 1,secondCoordinate.length() - 1)); 
     }
 
 
 
     //METHODS
     //getters and setters for the 4 instance variables (8 methods total) 
-    public int getX1(){return x1;}
+    public int getX1(){return x1;} //return x and y values for each coordinate
     public int getY1(){return y1;}
     public int getX2(){return x2;}
     public int getY2(){return y2;}
@@ -40,7 +40,7 @@ public class LinearCalculator{
     //calculates the distance between the two points to the nearest HUNDREDTH and returns the value.
     public double distance(){
         double distance = Math.sqrt(((Math.pow(getX2()-getX1(),2))) + (Math.pow(getY2()-getY1(), 2)));
-        return roundedToHundredth(distance);
+        return roundedToHundredth(distance); // sqrt((x1+x2)^2)+(y1+y2)^2)
     }
 
     //yInt() -> returns a double.
@@ -50,7 +50,7 @@ public class LinearCalculator{
         if (x2 == x1) {
             return -999.99;
         } else {
-            return roundedToHundredth(y1 - (slope() * x1));
+            return roundedToHundredth(y1 - (slope() * x1)); //solve for yint by solving for b. b = y - mx
         }
     }
 
@@ -62,7 +62,7 @@ public class LinearCalculator{
         if (x2 == x1) {
         return -999.99;
         } else {
-            return roundedToHundredth(slope);
+            return roundedToHundredth(slope); // (y2-y1)/(x2-x1) rise over run
         }
         
     }
@@ -88,7 +88,7 @@ public class LinearCalculator{
                 equation += "+" + yInt;
             } else if (yInt < 0) {
                 equation += yInt;
-            }
+            } //adds slope and yint to equation
         }
         return equation;
     }
@@ -97,7 +97,7 @@ public class LinearCalculator{
     //calculates the input to the nearest hundredth and returns that value
     public double roundedToHundredth(double x){
         double round = Math.round(x*100)/100.0;
-        return round;
+        return round; //rounds to nearest 100 by using math round operation
     }
 
     //printInfo() -> returns a string of information
